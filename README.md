@@ -2,6 +2,8 @@
 
 An end-to-end machine learning project that predicts residential sale prices using the [Ames Housing dataset](https://www.kaggle.com/c/house-prices-advanced-regression-techniques), deployed as an interactive Streamlit app with SHAP-based explainability.
 
+**🔗 Live demo: [ames-house-price-predictor-mdharris.streamlit.app](https://ames-house-price-predictor-mdharris.streamlit.app/)**
+
 ## Overview
 
 This project walks through the full ML lifecycle — from raw data to a deployed, interpretable model:
@@ -66,7 +68,7 @@ XGBoost leans heavily on the engineered interaction terms (especially `Qual_x_To
 The model uses ~80+ raw features, so asking a user to fill in every one in the app would be impractical. Only the most impactful features (per the SHAP analysis) are exposed as interactive inputs; everything else defaults to a sensible value computed once from the training data — median for numeric features, mode for categorical — and saved to `models/feature_defaults.json`.
 
 ### Deployment
-The trained stacking ensemble is served via a Streamlit app (`app.py`) that takes the highest-impact features as user input (via SHAP-informed defaults for everything else) and returns a prediction with a live SHAP waterfall explanation.
+The trained stacking ensemble is served via a Streamlit app (`app.py`) that takes the highest-impact features as user input (in addition to defaults computed from training data for everything else) and returns a prediction with a live SHAP waterfall explanation.
 
 **Serialization note**: the complete `StackingRegressor` isn't saved directly with `joblib.dump()`, because pickling the embedded XGBoost model across platforms (Linux training environment → local deployment) can corrupt its C++ binary state. Instead:
 - Ridge, Lasso, and LightGBM pipelines are pickled normally
@@ -80,6 +82,7 @@ The trained stacking ensemble is served via a Streamlit app (`app.py`) that take
 ├── EDA_FeatureEngg_Modeling_Analysis.ipynb       # Full EDA, feature engineering, modeling, SHAP analysis
 ├── app.py                                        # Streamlit prediction app
 ├── requirements.txt                              # Pinned dependency versions
+├── runtime.txt                                   # Pinned Python version
 ├── preprocessing_utils.py                        # Custom transformer functions (must be importable for unpickling)
 ├── models/
 │   ├── ridge_pipe.pkl
@@ -94,6 +97,8 @@ The trained stacking ensemble is served via a Streamlit app (`app.py`) that take
 ```
 
 ## Running locally
+
+The app is [live on Streamlit Cloud](https://ames-house-price-predictor-mdharris.streamlit.app/), but to run it locally:
 
 ```bash
 pip install -r requirements.txt
