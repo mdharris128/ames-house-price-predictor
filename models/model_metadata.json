@@ -1,0 +1,20 @@
+{
+  "model_type": "StackingRegressor (Ridge, Lasso, LightGBM, XGBoost)",
+  "meta_learner": "RidgeCV",
+  "target_transform": "log1p(SalePrice)",
+  "cv_rmsle": 0.11170937407119988,
+  "cv_rmsle_std": 0.003118678152791703,
+  "test_rmsle": 0.09901154954463831,
+  "test_rmse_dollars": 20652.527561783045,
+  "n_train_samples": 1239,
+  "n_test_samples": 219,
+  "n_features_raw": 96,
+  "base_models": [
+    "ridge",
+    "lasso",
+    "lgbm",
+    "xgb"
+  ],
+  "saved_at": "2026-07-10T14:01:39.732045",
+  "sklearn_version": "1.6.1"
+}
