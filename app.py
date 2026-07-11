@@ -220,7 +220,7 @@ with st.sidebar:
     - **Hyperparameter tuning** via Optuna
     - **SHAP interpretability** for model transparency
 
-    [View full notebook on GitHub](#)
+    [View full notebook on GitHub](https://github.com/mdharris128/ames-house-price-predictor/blob/main/EDA_FeatureEngg_Modeling_Analysis.ipynb)
     """)
     st.metric("Test RMSLE", f"{metadata['test_rmsle']:.4f}")
     st.metric("Test RMSE", f"${metadata['test_rmse_dollars']:,.0f}")
@@ -228,5 +228,5 @@ with st.sidebar:
 st.divider()
 st.caption(
     "Built with scikit-learn, XGBoost, LightGBM, and SHAP | "
-    "[View source on GitHub](#)"
+    "[View source on GitHub](https://github.com/mdharris128/ames-house-price-predictor)"
 )
